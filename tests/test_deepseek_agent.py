@@ -2,6 +2,8 @@ import unittest
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
+if not os.path.exists('/models/deepseek_model.h5'):
+    raise FileNotFoundError("Model file not found. Please ensure the path is correct.")
 from deepseek_agent import DeepSeekAgent
 class TestDeepSeekAgent(unittest.TestCase):
     def test_model_loading(self):
