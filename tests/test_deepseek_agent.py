@@ -1,11 +1,13 @@
 import unittest
 import sys
 import os
-model_path = os.path.join(os.path.dirname(__file__), '../models/deepseek_model.h5')
-agent = DeepSeekAgent(model_path)
+from deepseek_agent import DeepSeekAgent
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
-from deepseek_agent import DeepSeekAgent
+model_path = os.path.join(os.path.dirname(__file__), '../models/deepseek_model.h5')
+model_path = '/models/deepseek_model.h5'
+agent = DeepSeekAgent(model_path)
+
 class TestDeepSeekAgent(unittest.TestCase):
     def test_model_loading(self):
         agent = DeepSeekAgent('/models/deepseek_model.h5')
