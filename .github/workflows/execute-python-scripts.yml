@@ -1,0 +1,45 @@
+name: Execute All Python Scripts
+
+on:
+  workflow_dispatch: # Allows manual triggering
+
+env:
+  PYTHON_VERSION: 3.9
+
+jobs:
+  execute-scripts:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Step 4: Find and execute all Python scripts
+      - name: Execute all Python scripts
+        run: |
+          echo "Finding all Python scripts in the repository..."
+          scripts=$(find . -name "*.py" | sort)
+          echo "Executing the following scripts:"
+          echo "$scripts"
+          for script in $scripts; do
+            echo "Running $script..."
+            python "$script"
+          done
+
+      # Step 5: Verify execution
+      - name: Verify execution
+        run: |
+          echo "All Python scripts have been executed successfully!"
