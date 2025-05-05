@@ -2,6 +2,7 @@ import unittest
 import sys
 import os
 model_path = os.path.join(os.path.dirname(__file__), '../models/deepseek_model.h5')
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 
 from deepseek_agent import DeepSeekAgent
 class TestDeepSeekAgent(unittest.TestCase):
